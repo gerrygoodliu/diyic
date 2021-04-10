@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="index/animate.min.css"/>
+		<meta charset="UTF-8">
+		<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jQuery/jquery.mobile-1.4.5.min.js"></script>
+		<title>Canvas</title>
+	</head>
+	<body>
+		<canvas id="my" width="200" height="100" style="border: 1px solid red;"></canvas>
+		<canvas id="po" width="200" height="100" style="border: 1px solid red;"></canvas>
+		<div data-role="page" id="pageone">
+		  <div data-role="header">
+		    <h1>taphold 事件</h1>
+		  </div>
+		
+		  <div data-role="main" class="ui-content">
+		    <p>如果您敲击并保持一秒钟，我会消失。</p>
+		    <p>敲击并保持住，我会消失。</p>
+		    <p>敲击并保持住，我也会消失。</p>
+		  </div>
+		
+		  <div data-role="footer">
+		    <h1>页脚文本</h1>
+		  </div>
+		</div> 
+	</body>
+	<script type="text/javascript">
+		/*	moveTo(x,y) 定义线条开始坐标
+			lineTo(x,y) 定义线条结束坐标*/
+		var p=document.getElementById("po");	
+		var c=document.getElementById("my");
+		var pot=p.getContext("2d")
+		var ctx=c.getContext("2d");
+		ctx.moveTo(0,0);
+		ctx.lineTo(100,100);
+		ctx.stroke()
+		pot.beginPath();
+		pot.arc(95,50,40,0,2*Math.PI)
+		pot.stroke()
+		$(document).on("pagecreate","#pageone",function(){
+		  $("p").on("taphold",function(){
+		    $(this).hide();
+		  });                       
+		});
+	</script>
+</html>
